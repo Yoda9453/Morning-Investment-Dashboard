@@ -1,0 +1,2023 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morning Investment Brief</title>
+<style>
+:root{
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --text:#182230;
+  --muted:#667085;
+  --line:#dfe4ea;
+  --accent:#163a5f;
+  --accent-2:#285d87;
+  --accent-soft:#eef4f8;
+  --positive:#147a4a;
+  --negative:#b42318;
+  --warning:#8a5a00;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;
+  line-height:1.68;
+}
+a{color:inherit}
+
+.site-header{
+  background:linear-gradient(135deg,#102f4f,#245f8f);
+  color:#fff;
+  padding:30px 22px 26px;
+}
+.site-header .inner{
+  max-width:1180px;
+  margin:0 auto;
+}
+.eyebrow{
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  opacity:.78;
+}
+.site-header h1{
+  margin:5px 0 3px;
+  font-size:30px;
+  line-height:1.2;
+}
+.site-header .meta{
+  font-size:14px;
+  opacity:.88;
+}
+
+.page{
+  max-width:1180px;
+  margin:22px auto 50px;
+  padding:0 18px;
+}
+.section{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  box-shadow:0 8px 24px rgba(16,47,79,.05);
+  padding:26px 28px 30px;
+  margin-bottom:18px;
+}
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 18px;
+  font-size:24px;
+  color:var(--accent);
+}
+.section-title .num{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:var(--accent);
+  color:#fff;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  font-weight:700;
+  flex:0 0 auto;
+}
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.summary-card{
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  padding:16px 17px;
+  min-height:150px;
+}
+.summary-card .tag{
+  display:inline-block;
+  font-size:12px;
+  color:var(--accent);
+  background:var(--accent-soft);
+  border-radius:999px;
+  padding:4px 9px;
+  margin-bottom:9px;
+  font-weight:700;
+}
+.summary-card h3{
+  margin:0 0 8px;
+  font-size:17px;
+  line-height:1.45;
+  color:#23384d;
+}
+.summary-card p{
+  margin:0 0 10px;
+  font-size:14px;
+}
+.source{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:12px;
+}
+.source strong{
+  color:#475467;
+}
+
+.toolbar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.toolbar input,
+.toolbar select{
+  border:1px solid #cfd6de;
+  background:#fff;
+  border-radius:8px;
+  padding:9px 10px;
+  font-size:14px;
+  min-height:38px;
+}
+.toolbar input{
+  min-width:240px;
+  flex:1;
+}
+.toolbar button{
+  border:1px solid #cfd6de;
+  background:#fff;
+  border-radius:8px;
+  padding:9px 12px;
+  cursor:pointer;
+}
+.toolbar button:hover{
+  background:#f7f9fb;
+}
+
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  border:1px solid var(--line);
+  border-radius:10px;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:900px;
+  background:#fff;
+  font-size:13.5px;
+}
+thead th{
+  position:sticky;
+  top:0;
+  z-index:1;
+  background:#eef3f7;
+  color:#30455a;
+  font-weight:700;
+  text-align:left;
+  padding:10px 11px;
+  border-bottom:1px solid var(--line);
+  white-space:nowrap;
+  cursor:pointer;
+}
+tbody td{
+  padding:9px 11px;
+  border-bottom:1px solid #edf0f3;
+  vertical-align:top;
+}
+tbody tr:hover{
+  background:#fafbfd;
+}
+tbody tr:last-child td{
+  border-bottom:0;
+}
+.num-cell{
+  text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+.pos{
+  color:var(--positive);
+  font-weight:650;
+}
+.neg{
+  color:var(--negative);
+  font-weight:650;
+}
+.flat{
+  color:#475467;
+}
+
+.news-section{
+  margin-top:26px;
+}
+.news-section > h2{
+  margin:0 0 14px;
+  font-size:21px;
+  color:var(--accent);
+  border-left:4px solid var(--accent);
+  padding-left:10px;
+}
+.news-card{
+  border-top:1px solid var(--line);
+  padding:18px 0 16px;
+}
+.news-card:first-of-type{
+  border-top:0;
+  padding-top:4px;
+}
+.news-card h3{
+  margin:0 0 8px;
+  font-size:17px;
+  color:#24374a;
+}
+.news-card p{
+  margin:7px 0;
+  font-size:14px;
+}
+.investment-view{
+  background:#f7f9fb;
+  border-left:3px solid var(--accent-2);
+  border-radius:6px;
+  padding:10px 12px;
+  margin-top:9px;
+}
+.investment-view strong{
+  color:var(--accent);
+}
+.empty-note{
+  background:#fafafa;
+  border:1px dashed #cfd6de;
+  border-radius:9px;
+  color:var(--muted);
+  padding:14px 15px;
+  font-size:14px;
+}
+
+.notes{
+  color:#596475;
+  font-size:12.5px;
+}
+.notes ul{
+  margin:8px 0 0 18px;
+  padding:0;
+}
+.notes li{
+  margin:5px 0;
+}
+
+.footer{
+  max-width:1180px;
+  margin:0 auto 30px;
+  padding:0 18px;
+  color:#7a8594;
+  font-size:12px;
+}
+
+@media (max-width:800px){
+  .summary-grid{
+    grid-template-columns:1fr;
+  }
+  .section{
+    padding:20px 16px 24px;
+    border-radius:10px;
+  }
+  .page{
+    padding:0 10px;
+  }
+  .site-header h1{
+    font-size:24px;
+  }
+}
+
+
+/* Optional AI Infrastructure heatmap */
+.heatmap-card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 2px 10px rgba(15,23,42,.05);
+}
+
+.heatmap-card h3{
+  margin:0 0 6px 0;
+  font-size:18px;
+  font-weight:700;
+  color:#111827;
+}
+
+.heatmap-subtitle{
+  margin:0 0 14px 0;
+  font-size:13px;
+  color:#6b7280;
+}
+
+.heatmap-image-wrap{
+  width:100%;
+  overflow-x:auto;
+}
+
+.heatmap-image{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:10px;
+  cursor:zoom-in;
+}
+
+
+/* ==========================================================
+   V05 — 主要市場變化
+   Desktop: 4 columns × 2 rows
+   Mobile:  2 columns × 4 rows
+   ========================================================== */
+
+.market-snapshot-section {
+  margin-top: 8px;
+}
+
+.market-snapshot-title {
+  margin-bottom: 16px;
+}
+
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.market-card {
+  min-width: 0;
+  padding: 16px 16px 14px;
+  border: 1px solid rgba(127, 127, 127, 0.22);
+  border-radius: 14px;
+  background: rgba(127, 127, 127, 0.055);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.035);
+}
+
+.market-name {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  opacity: 0.82;
+}
+
+.market-value {
+  font-size: 24px;
+  font-weight: 750;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.market-change {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.market-up {
+  color: var(--pos, #16803a);
+}
+
+.market-down {
+  color: var(--neg, #c23b3b);
+}
+
+.market-flat {
+  color: var(--muted, #6b7280);
+}
+
+.market-date {
+  margin-top: 8px;
+  font-size: 11px;
+  opacity: 0.58;
+}
+
+@media (max-width: 720px) {
+  .market-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .market-card {
+    padding: 14px 12px 12px;
+  }
+
+  .market-value {
+    font-size: 21px;
+  }
+
+  .market-change {
+    font-size: 14px;
+  }
+}
+
+
+/* ==========================================================
+   V05.3 — Morning Brief archive date selector
+   ========================================================== */
+
+.archive-date-bar {
+  margin: 4px 0 18px;
+}
+
+.archive-date-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.archive-date-label {
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0.72;
+}
+
+.archive-date-selector {
+  min-width: 150px;
+  padding: 8px 34px 8px 11px;
+  border: 1px solid rgba(127, 127, 127, 0.28);
+  border-radius: 10px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .archive-date-inner {
+    align-items: stretch;
+  }
+
+  .archive-date-selector {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="eyebrow">Daily Investment Intelligence</div>
+    <h1>Morning Investment Brief</h1>
+    <div class="meta">2026-10-14｜新聞彙整、股價變動與 AI 編輯摘要</div>
+  </div>
+</header>
+
+<main class="page">
+
+
+  <!-- V05.3 Archive Date Selector -->
+  <section class="archive-date-bar" aria-label="Morning Brief archive">
+    <div class="archive-date-inner">
+      <div class="archive-date-label">
+        Report Date
+      </div>
+
+      <select
+        id="archive-date-selector"
+        class="archive-date-selector"
+        aria-label="Select Morning Brief date"
+      >
+        <option value="__LATEST__">Latest</option>
+        <option value="2026-10-14" selected>2026-10-14</option><option value="2026-10-13">2026-10-13</option><option value="2026-10-11">2026-10-11</option><option value="2026-10-09">2026-10-09</option><option value="2026-10-08">2026-10-08</option><option value="2026-10-07">2026-10-07</option><option value="2026-10-06">2026-10-06</option><option value="2026-10-03">2026-10-03</option><option value="2026-10-02">2026-10-02</option><option value="2026-10-01">2026-10-01</option><option value="2026-09-30">2026-09-30</option><option value="2026-09-29">2026-09-29</option><option value="2026-09-26">2026-09-26</option><option value="2026-09-25">2026-09-25</option><option value="2026-09-24">2026-09-24</option><option value="2026-09-23">2026-09-23</option><option value="2026-09-22">2026-09-22</option><option value="2026-09-21">2026-09-21</option>
+      </select>
+    </div>
+  </section>
+
+
+
+  <!-- 主要市場變化 -->
+  <section
+    class="section market-snapshot-section"
+    id="market-snapshot"
+  >
+    <h2 class="section-title market-snapshot-title">
+      主要市場變化
+    </h2>
+
+    <div class="market-grid">
+      
+      <article
+        class="market-card"
+        data-category="股市指數"
+        title="^GSPC"
+      >
+        <div class="market-name">
+          美國 S&amp;P 500
+        </div>
+
+        <div class="market-value">
+          7,805.45
+        </div>
+
+        <div class="market-change market-down">
+          -0.02%
+        </div>
+
+        <div class="market-date">
+          2026-10-13
+        </div>
+      </article>
+
+      <article
+        class="market-card"
+        data-category="股市指數"
+        title="^NDX"
+      >
+        <div class="market-name">
+          美國納斯達克
+        </div>
+
+        <div class="market-value">
+          30,569
+        </div>
+
+        <div class="market-change market-down">
+          -0.31%
+        </div>
+
+        <div class="market-date">
+          2026-10-13
+        </div>
+      </article>
+
+      <article
+        class="market-card"
+        data-category="股市指數"
+        title="^TWII"
+      >
+        <div class="market-name">
+          台灣加權指數
+        </div>
+
+        <div class="market-value">
+          48,341
+        </div>
+
+        <div class="market-change market-down">
+          -1.95%
+        </div>
+
+        <div class="market-date">
+          2026-10-13
+        </div>
+      </article>
+
+      <article
+        class="market-card"
+        data-category="利率"
+        title="^TNX"
+      >
+        <div class="market-name">
+          美國10年期公債利率
+        </div>
+
+        <div class="market-value">
+          5.22%
+        </div>
+
+        <div class="market-change market-down">
+          -2.3 bp
+        </div>
+
+        <div class="market-date">
+          2026-10-13
+        </div>
+      </article>
+
+      <article
+        class="market-card"
+        data-category="原物料"
+        title="BZ=F"
+      >
+        <div class="market-name">
+          布蘭特原油
+        </div>
+
+        <div class="market-value">
+          106.39
+        </div>
+
+        <div class="market-change market-up">
+          +0.66%
+        </div>
+
+        <div class="market-date">
+          2026-10-13
+        </div>
+      </article>
+
+      <article
+        class="market-card"
+        data-category="原物料"
+        title="GC=F"
+      >
+        <div class="market-name">
+          黃金
+        </div>
+
+        <div class="market-value">
+          4,179.50
+        </div>
+
+        <div class="market-change market-up">
+          +0.05%
+        </div>
+
+        <div class="market-date">
+          2026-10-13
+        </div>
+      </article>
+
+      <article
+        class="market-card"
+        data-category="匯率"
+        title="TWD=X"
+      >
+        <div class="market-name">
+          台幣兌美元
+        </div>
+
+        <div class="market-value">
+          32.10
+        </div>
+
+        <div class="market-change market-down">
+          -0.06%
+        </div>
+
+        <div class="market-date">
+          2026-10-14
+        </div>
+      </article>
+
+      <article
+        class="market-card"
+        data-category="匯率"
+        title="DX-Y.NYB"
+      >
+        <div class="market-name">
+          美元指數
+        </div>
+
+        <div class="market-value">
+          102.19
+        </div>
+
+        <div class="market-change market-up">
+          +0.01%
+        </div>
+
+        <div class="market-date">
+          2026-10-13
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- 1. 今日重點摘要 -->
+  <section class="section" id="summary">
+    <h2 class="section-title">
+      <span class="num">1</span>
+      今日重點摘要
+    </h2>
+
+    <div class="summary-grid">
+      
+                <article class="summary-card">
+                    <div class="tag">
+                        今日重點
+                    </div>
+
+                    <h3>
+                        晶片股連續承壓，市場開始重新定價AI資本效率
+                    </h3>
+
+                    
+
+<p>美股半導體類股延續弱勢，費城半導體指數連續第五個交易日下跌。Bloomberg ASKB與多家媒體指出，Broadcom執行長Hock Tan對部分AI投資行為提出警告，加上中國記憶體業者CXMT技術進展引發競爭疑慮，市場從追逐AI成長敘事轉向檢驗資本支出、融資能力與實際回報。</p>
+
+
+<p><strong>投資觀察：</strong> AI產業目前不是需求消失，而是估值框架正在變嚴格。未來市場可能更偏好有明確現金流、較低槓桿與可驗證營收轉換的AI公司，而不是單純依賴長期TAM敘事。</p>
+
+
+<p><strong>來源：</strong> Bloomberg ASKB、CNBC、MarketWatch、經濟日報、自由時報財經</p>
+
+
+                </article>
+                
+
+                <article class="summary-card">
+                    <div class="tag">
+                        今日重點
+                    </div>
+
+                    <h3>
+                        中國記憶體技術進展衝擊全球DRAM與NAND評價
+                    </h3>
+
+                    
+
+<p>Bloomberg ASKB指出，CXMT宣稱將推出更高密度的4F² DRAM架構，YMTC在NAND出貨排名上亦持續提升，帶動SK Hynix、Samsung與Micron等記憶體股下跌。部分報導同時提醒，CXMT的技術宣稱目前仍缺乏完整商業化驗證。</p>
+
+
+<p><strong>投資觀察：</strong> 市場開始重新納入「中國供給增加」對記憶體景氣與價格的影響。即使AI帶動HBM與高階記憶體需求，若中國廠商在傳統DRAM／NAND快速提升競爭力，整體產業的供需與定價權仍可能被稀釋。</p>
+
+
+<p><strong>來源：</strong> Bloomberg ASKB、CNBC、自由時報財經</p>
+
+
+                </article>
+                
+
+                <article class="summary-card">
+                    <div class="tag">
+                        今日重點
+                    </div>
+
+                    <h3>
+                        AirTrunk延後IPO，AI資料中心資產開始承受高利率估值壓力
+                    </h3>
+
+                    
+
+<p>WSJ報導，Blackstone支持的AirTrunk延後新加坡REIT IPO，主要考量市場波動與美國利率前景不確定。近期Firmus與VITRO等AI資料中心相關上市計畫亦先後延後或取消。</p>
+
+
+<p><strong>投資觀察：</strong> AI資料中心需求仍強，但資產端正在接受高利率環境的重新定價。這顯示「有需求」不代表「所有估值都合理」，未來資料中心投資更需要關注資本成本、退出估值與實際現金收益率。</p>
+
+
+<p><strong>來源：</strong> WSJ</p>
+
+
+                </article>
+                
+
+                <article class="summary-card">
+                    <div class="tag">
+                        今日重點
+                    </div>
+
+                    <h3>
+                        Fed官員Williams預期今年可能再升息一次，但2027年未必需要續升
+                    </h3>
+
+                    
+
+<p>CNBC報導，New York Fed總裁John Williams表示，今年可能仍適合再升息一次，但目前沒有充分理由認為2027年還需要進一步升息。他強調應觀察能源與AI需求等因素對通膨的底層趨勢影響，而非只看短期價格波動。</p>
+
+
+<p><strong>投資觀察：</strong> 市場的核心風險正在從「升息次數」轉向「高利率維持時間」。即使2027年不再升息，只要長端殖利率維持高檔，高估值科技、資料中心與高槓桿資產仍會面臨折現率壓力。</p>
+
+
+<p><strong>來源：</strong> CNBC</p>
+
+
+                </article>
+                
+
+        <article class="summary-card">
+            <div class="tag">
+                今日重點
+            </div>
+
+            <h3>
+                投資組合短線跌幅集中在泰福與國軒，高動能生技仍維持中期強勢
+            </h3>
+
+            
+
+<p>price_summary_for_ai顯示，泰福生技與國軒高科分別下跌8.86%與7.08%，本日沒有單日漲幅超過5%的個股。鼎晉與浩鼎30日漲幅仍分別達126.41%與111.36%，顯示台灣生技中期趨勢仍強但波動高。</p>
+
+
+<p><strong>投資觀察：</strong> 今日組合價格表現偏弱，但目前輸入資料未提供足以確認泰福或國軒高科下跌的公司特定催化，因此不宜直接把股價回落解讀為基本面惡化。</p>
+
+
+<p><strong>來源：</strong> price_summary_for_ai</p>
+        </article>
+        
+    </div>
+  </section>
+
+
+  <!-- 2. 股價變動 -->
+  <section class="section" id="prices">
+    <h2 class="section-title">
+      <span class="num">2</span>
+      股價變動
+    </h2>
+
+    <div class="toolbar">
+
+      <input
+        id="priceSearch"
+        type="search"
+        placeholder="搜尋公司或 Ticker"
+      >
+
+      <select id="categoryFilter">
+        <option value="">全部類別</option>
+        <option value="充電樁">充電樁</option>
+<option value="台灣生技">台灣生技</option>
+<option value="太空相關">太空相關</option>
+<option value="沉浸式體驗">沉浸式體驗</option>
+<option value="海外生技">海外生技</option>
+<option value="電動機車">電動機車</option>
+<option value="電池相關">電池相關</option>
+      </select>
+
+      <select id="moveFilter">
+        <option value="">全部漲跌幅</option>
+        <option value="3">|1D| ≥ 3%</option>
+        <option value="5">|1D| ≥ 5%</option>
+        <option value="10">|1D| ≥ 10%</option>
+      </select>
+
+      <button
+        type="button"
+        id="resetFilters"
+      >
+        清除篩選
+      </button>
+
+    </div>
+
+    <div class="table-wrap">
+
+      <table id="priceTable">
+
+        <thead>
+          <tr>
+            <th data-type="text">類別</th>
+            <th data-type="text">公司</th>
+            <th data-type="text">Ticker</th>
+            <th data-type="text">最新價格日</th>
+            <th data-type="number">收盤價</th>
+            <th data-type="number">1D</th>
+            <th data-type="number">5D</th>
+            <th data-type="number">30D</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+                <tr>
+                    <td>台灣生技</td>
+                    <td>中裕新藥股份有限公司</td>
+                    <td>4147.TWO</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        58.30
+                    </td>
+
+                    <td class="num-cell neg">
+                        -3.64%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -2.83%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -14.39%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>台灣生技</td>
+                    <td>泰福生技股份有限公司</td>
+                    <td>6541.TW</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        30.35
+                    </td>
+
+                    <td class="num-cell neg">
+                        -8.86%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -3.50%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -17.75%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>台灣生技</td>
+                    <td>台灣浩鼎生技股份有限公司</td>
+                    <td>4174.TWO</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        55.80
+                    </td>
+
+                    <td class="num-cell neg">
+                        -2.96%
+                    </td>
+
+                    <td class="num-cell pos">
+                        20.78%
+                    </td>
+
+                    <td class="num-cell pos">
+                        111.36%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>台灣生技</td>
+                    <td>圓祥生技股份有限公司</td>
+                    <td>6945.TWO</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        123.50
+                    </td>
+
+                    <td class="num-cell neg">
+                        -1.59%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -4.63%
+                    </td>
+
+                    <td class="num-cell pos">
+                        15.42%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>台灣生技</td>
+                    <td>鼎晉生技股份有限公司</td>
+                    <td>7876.TWO</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        82.30
+                    </td>
+
+                    <td class="num-cell pos">
+                        1.35%
+                    </td>
+
+                    <td class="num-cell pos">
+                        11.52%
+                    </td>
+
+                    <td class="num-cell pos">
+                        126.41%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>台灣生技</td>
+                    <td>鑽石生技投資股份有限公司</td>
+                    <td>6901.TW</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        17.50
+                    </td>
+
+                    <td class="num-cell neg">
+                        -3.05%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -2.78%
+                    </td>
+
+                    <td class="num-cell pos">
+                        5.74%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>海外生技</td>
+                    <td>OPKO Health Inc</td>
+                    <td>OPK</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        1.32
+                    </td>
+
+                    <td class="num-cell neg">
+                        -4.35%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -9.59%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -10.20%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>海外生技</td>
+                    <td>艾迪康控股有限公司</td>
+                    <td>9860.HK</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        4.46
+                    </td>
+
+                    <td class="num-cell pos">
+                        4.81%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -6.88%
+                    </td>
+
+                    <td class="num-cell pos">
+                        13.61%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>海外生技</td>
+                    <td>共晶製藥公司</td>
+                    <td>COCP</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        1.08
+                    </td>
+
+                    <td class="num-cell pos">
+                        1.89%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -2.70%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -6.90%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電動機車</td>
+                    <td>睿能創意公司</td>
+                    <td>GGR</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        3.24
+                    </td>
+
+                    <td class="num-cell pos">
+                        2.53%
+                    </td>
+
+                    <td class="num-cell pos">
+                        1.57%
+                    </td>
+
+                    <td class="num-cell pos">
+                        19.56%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電動機車</td>
+                    <td>Vinfast Auto Ltd</td>
+                    <td>VFS</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        3.03
+                    </td>
+
+                    <td class="num-cell neg">
+                        -0.66%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -1.62%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -3.66%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電動機車</td>
+                    <td>牛電科技</td>
+                    <td>NIU</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        1.90
+                    </td>
+
+                    <td class="num-cell flat">
+                        0.00%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -1.04%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -5.94%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電動機車</td>
+                    <td>Ola Electric Mobility Ltd</td>
+                    <td>OLAELEC.BO</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        35.09
+                    </td>
+
+                    <td class="num-cell neg">
+                        -1.65%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -2.75%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -6.94%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電動機車</td>
+                    <td>雅迪集團控股有限公司</td>
+                    <td>1585.HK</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        9.21
+                    </td>
+
+                    <td class="num-cell pos">
+                        1.04%
+                    </td>
+
+                    <td class="num-cell pos">
+                        14.55%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -1.60%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>充電樁</td>
+                    <td>EVgo公司</td>
+                    <td>EVGO</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        1.13
+                    </td>
+
+                    <td class="num-cell pos">
+                        1.80%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -14.39%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -15.67%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>充電樁</td>
+                    <td>充電點控股公司</td>
+                    <td>CHPT</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        7.22
+                    </td>
+
+                    <td class="num-cell flat">
+                        0.00%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -16.72%
+                    </td>
+
+                    <td class="num-cell pos">
+                        31.27%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電池相關</td>
+                    <td>寧德時代新能源科技股份有限公</td>
+                    <td>3750.HK</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        485.20
+                    </td>
+
+                    <td class="num-cell neg">
+                        -1.94%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -0.70%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -19.07%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電池相關</td>
+                    <td>惠州億緯鋰能股份有限公司</td>
+                    <td>300014.SZ</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        48.37
+                    </td>
+
+                    <td class="num-cell neg">
+                        -3.99%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -0.45%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -12.93%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電池相關</td>
+                    <td>欣旺達電子股份有限公司</td>
+                    <td>300207.SZ</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        19.73
+                    </td>
+
+                    <td class="num-cell neg">
+                        -1.55%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -8.23%
+                    </td>
+
+                    <td class="num-cell pos">
+                        10.22%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電池相關</td>
+                    <td>國軒高科股份有限公司</td>
+                    <td>002074.SZ</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        28.33
+                    </td>
+
+                    <td class="num-cell neg">
+                        -7.08%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -1.22%
+                    </td>
+
+                    <td class="num-cell pos">
+                        4.27%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電池相關</td>
+                    <td>三星電管</td>
+                    <td>006400.KS</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        560,000
+                    </td>
+
+                    <td class="num-cell neg">
+                        -0.18%
+                    </td>
+
+                    <td class="num-cell pos">
+                        5.86%
+                    </td>
+
+                    <td class="num-cell pos">
+                        8.53%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>電池相關</td>
+                    <td>LG新能源有限公司</td>
+                    <td>373220.KS</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        410,000
+                    </td>
+
+                    <td class="num-cell pos">
+                        3.02%
+                    </td>
+
+                    <td class="num-cell pos">
+                        10.51%
+                    </td>
+
+                    <td class="num-cell pos">
+                        16.81%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>沉浸式體驗</td>
+                    <td>智崴資訊科技股份有限公司</td>
+                    <td>5263.TWO</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        90.00
+                    </td>
+
+                    <td class="num-cell neg">
+                        -2.81%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -0.66%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -9.09%
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td>太空相關</td>
+                    <td>亞太衛星控股有限公司</td>
+                    <td>1045.HK</td>
+                    <td>2026-10-13</td>
+
+                    <td class="num-cell">
+                        1.94
+                    </td>
+
+                    <td class="num-cell pos">
+                        0.52%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -0.77%
+                    </td>
+
+                    <td class="num-cell neg">
+                        -7.17%
+                    </td>
+                </tr>
+                
+        </tbody>
+
+      </table>
+
+    </div>
+  </section>
+
+
+  <!-- 3. 主要新聞 -->
+  <section class="section" id="news">
+
+    <h2 class="section-title">
+      <span class="num">3</span>
+      主要新聞
+    </h2>
+
+    <div class="news-section" id="macro">
+      <h2>3.1 總體與市場相關</h2>
+      <article class="news-card"><h3>Williams：今年可能再升息一次，但2027年未必需要續升</h3>
+
+
+<p>CNBC報導，New York Fed總裁John Williams表示，今年可能仍適合再升息一次，但目前沒有理由認為2027年需要進一步升息。他認為Fed應著重觀察通膨的底層趨勢，而不是只對短期能源或其他價格波動做反應。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 政策訊號顯示Fed仍未完成緊縮周期，但市場可能逐步從「還要升幾次」轉向「高利率維持多久」。對估值而言，後者更直接影響長久期資產。</p></div>
+
+
+<p><strong>來源：</strong> CNBC</p>
+
+</article>
+<article class="news-card"><h3>新台幣跌破32元，外資大額賣超加重匯出壓力</h3>
+
+
+<p>自由時報財經報導，台股外資單日賣超達1,653.4億元，新台幣兌美元一度重貶並跌破32元，成交量亦大幅放大。報導將資金流出與中東情勢、油價上升、美債殖利率高檔及高估值科技股回檔連結。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 台股與匯率正在出現同方向資金壓力。若外資賣超與美元走強持續，短期將提高台灣風險資產波動，也可能讓高Beta科技股承受額外資金面壓力。</p></div>
+
+
+<p><strong>來源：</strong> 自由時報財經</p>
+
+</article>
+<article class="news-card"><h3>IMF示警高債務與高利率可能放大全球金融風險</h3>
+
+
+<p>經濟日報報導，IMF警告先進經濟體債務負擔持續升高，在利率長期偏高環境下可能增加金融市場不穩定風險。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 高債務、高利率與大量AI融資正在同時發生，使信用市場與主權債市場成為風險資產的重要約束條件。未來利率波動可能比單一企業財報更容易引發跨資產重新定價。</p></div>
+
+
+<p><strong>來源：</strong> 經濟日報</p>
+
+</article>
+<article class="news-card"><h3>Lisa Cook要求延後白宮聽證，Fed獨立性爭議延續</h3>
+
+
+<p>Bloomberg報導，Fed理事Lisa Cook表示無法出席原訂11月5日的白宮聽證，其律師要求將程序延至12月Fed會議之後。爭議核心在於總統能否以「for cause」標準撤換Fed理事。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 此案短期對政策利率本身影響有限，但若Fed人事獨立性爭議升高，可能增加市場對貨幣政策制度風險與長端期限溢價的關注。</p></div>
+
+
+<p><strong>來源：</strong> Bloomberg</p></article>
+    </div>
+
+    <div class="news-section" id="ev-newenergy">
+      <h2>3.2 電動車與新能源相關</h2>
+      <article class="news-card"><h3>充電速度競爭加劇，EV基礎設施技術門檻提高</h3>
+
+
+<p>Bloomberg ASKB指出，中國車廠在巴黎車展展示更快充電能力，部分技術已突破10分鐘充電門檻，反映EV產業正從單純比續航進入充電效率競爭。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 充電速度提升會增加對充電樁功率、電網接入與熱管理的要求。對EVGO與CHPT等基礎設施業者而言，未來競爭力不只在站點數量，也包括升級能力與資本支出效率。</p></div>
+
+
+<p><strong>來源：</strong> Bloomberg ASKB</p>
+
+</article>
+<article class="news-card"><h3>VinFast加速東南亞二輪車布局</h3>
+
+
+<p>Bloomberg ASKB指出，VinFast持續透過經銷商與激勵方案擴張印尼與菲律賓的電動二輪車布局，增加對Yadea與Niu等既有業者的競爭。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 東南亞電動二輪車市場仍具成長空間，但競爭者增加意味獲客成本與通路投資可能上升。對品牌商而言，市占成長能否轉化為單位經濟改善比單純銷量更重要。</p></div>
+
+
+<p><strong>來源：</strong> Bloomberg ASKB</p></article>
+    </div>
+
+    <div class="news-section" id="biotech">
+      <h2>3.3 生技產業相關</h2>
+      <article class="news-card"><h3>Biotech新創加速採用反向併購上市</h3>
+
+
+<p>FT報導，部分生技新創正透過reverse merger加快上市速度，反映傳統IPO市場仍不容易，但企業仍希望取得公開市場資本與流動性。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 生技融資環境仍偏選擇性，反向併購提供替代上市路徑，但也可能帶來品質分化。投資人需要更重視研發里程碑、現金跑道與交易結構，而非上市形式本身。</p></div>
+
+
+<p><strong>來源：</strong> FT</p></article>
+    </div>
+
+    <div class="news-section" id="ai">
+      <h2>3.4 AI 相關</h2>
+      <article class="news-card"><h3>晶片股連續第五日下跌，AI交易由成長敘事轉向資本效率</h3>
+
+
+<p>MarketWatch、CNBC、經濟日報與自由時報財經均指出，半導體類股延續跌勢，市場同時消化Broadcom執行長對AI投資過熱的評論以及中國記憶體技術進展。費城半導體指數連續第五個交易日收跌。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 市場正在重新區分「終端需求真的強」與「估值是否過度反映」。未來AI硬體公司即使需求仍佳，也可能因資本成本與估值壓縮而出現較大波動。</p></div>
+
+
+<p><strong>來源：</strong> MarketWatch、CNBC、經濟日報、自由時報財經、Bloomberg ASKB</p>
+
+</article>
+<article class="news-card"><h3>CXMT宣稱4F² DRAM技術進展，引發記憶體供給競爭疑慮</h3>
+
+
+<p>Bloomberg ASKB與自由時報財經指出，中國CXMT宣稱計畫推出4F² DRAM架構，以提高記憶體密度，消息引發SK Hynix、Samsung及Micron等記憶體股賣壓。相關技術目前仍需要實際良率與量產能力驗證。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 若中國廠商能縮小DRAM技術差距，將削弱傳統記憶體三強的供給紀律與價格能力；但在缺乏量產與良率證據前，不宜直接假設產業競爭格局已經逆轉。</p></div>
+
+
+<p><strong>來源：</strong> Bloomberg ASKB、自由時報財經、CNBC</p>
+
+</article>
+<article class="news-card"><h3>Nvidia加碼歐洲AI投資，提供AI需求的正面底層訊號</h3>
+
+
+<p>Bloomberg ASKB指出，Jensen Huang在歐洲行程中宣布約20億美元的新AI投資，使Nvidia過去一年在歐洲的相關投資累計進一步增加。Nvidia股價在半導體普遍下跌的情況下相對抗跌。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 即使AI相關股票短期估值修正，實體基礎建設投資仍持續。這支持AI需求尚未反轉的判斷，但市場會更重視投資回收與部署效率。</p></div>
+
+
+<p><strong>來源：</strong> Bloomberg ASKB</p>
+
+</article>
+<article class="news-card"><h3>矽格與京元電擴充AI測試產能</h3>
+
+
+<p>自由時報財經與中央社財經報導，矽格集團斥資約21.88億元取得竹科廠房以擴充AI測試量能；京元電亦與Nvidia簽訂預付款相關安排並擴充美國測試產能。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> AI需求正持續向封裝後段與測試產能外溢。若先進晶片出貨量持續增加，測試環節的資本支出與產能利用率可能成為台灣半導體供應鏈新的受惠點。</p></div>
+
+
+<p><strong>來源：</strong> 自由時報財經、中央社財經</p>
+
+</article>
+<article class="news-card"><h3>Anthropic營收數據成為AI應用變現的新觀察點</h3>
+
+
+<p>CNBC報導，Anthropic將公布新的營收數據，市場愈來愈重視AI lab的財務表現，因其收入增速正成為驗證AI基礎建設支出合理性的核心指標。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 市場正在從「模型能力」轉向「模型變現」。若AI lab營收無法跟上基礎建設CAPEX，對整個GPU、資料中心與融資鏈的估值都可能造成壓力。</p></div>
+
+
+<p><strong>來源：</strong> CNBC</p></article>
+    </div>
+
+  </section>
+
+
+  <!-- 4. 其他重要新聞 -->
+  <section class="section" id="other-news">
+
+    <h2 class="section-title">
+      <span class="num">4</span>
+      其他個別重要新聞
+    </h2>
+
+    <article class="news-card"><h3>AirTrunk延後新加坡IPO，資料中心資產估值承壓</h3>
+
+
+<p>WSJ報導，Blackstone支持的AirTrunk因市場波動與利率前景不確定，延後原定今年的新加坡REIT IPO，募資規模原預計超過10億美元。近期Firmus與VITRO等AI基礎建設上市計畫亦受阻。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 這顯示公開市場開始對資料中心資產要求更高收益率。對AI基礎建設而言，未來「退出估值」與「融資成本」將直接影響投資IRR，而不只是需求成長。</p></div>
+
+
+<p><strong>來源：</strong> WSJ</p>
+
+</article>
+<article class="news-card"><h3>高利率與退出不順開始淘汰中小型PE公司</h3>
+
+
+<p>WSJ報導，AUM約150億美元以下、缺乏多元業務支撐的中小型PE公司，在高融資成本與退出市場低迷下承受更大壓力。今年截至9月PE募資約2,220億美元，正朝至少2020年以來最弱年度前進。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> PE產業正在由低利率時代的槓桿與估值擴張，轉向更重視營運改善與現金回收。對GP評估而言，DPI、退出能力與資本結構管理的重要性將高於帳面IRR。</p></div>
+
+
+<p><strong>來源：</strong> WSJ</p>
+
+</article>
+<article class="news-card"><h3>美國國防新創赴台尋找去中國化供應鏈</h3>
+
+
+<p>WSJ報導，越來越多美國無人機與國防科技新創赴台尋找製造夥伴，希望結合美國自主系統與軟體能力、台灣製造與造船能力，建立降低中國零組件依賴的供應鏈。</p>
+
+
+<div class="investment-view"><p><strong>投資觀察：</strong> 若合作持續深化，台灣可能從傳統電子製造基地延伸成為印太無人系統與國防科技的重要生產節點，對無人機、造船、通訊與相關零組件供應鏈形成中期機會。</p></div>
+
+
+<p><strong>來源：</strong> WSJ</p></article>
+
+  </section>
+
+
+  <!-- Optional AI Infrastructure Heatmap -->
+  
+
+
+  <!-- 5. 官方公告 -->
+  <section class="section" id="official">
+
+    <h2 class="section-title">
+      <span class="num">5</span>
+      官方公告
+    </h2>
+
+    <div class="empty-note"><p>本日輸入資料中未發現需要列入 Morning Brief 的官方公告。</p></div>
+
+  </section>
+
+
+  <!-- 6. 系統與資料註記 -->
+  <section
+    class="section notes"
+    id="notes"
+  >
+
+    <h2 class="section-title">
+      <span class="num">6</span>
+      資料與系統註記
+    </h2>
+
+    <ul>
+<li>本日Morning Brief依據2026-10-14的Daily_News_Candidates、Bloomberg ASKB與price_summary_for_ai整理。</li>
+<li>Daily_News_Candidates共87筆，來源包含FT、CNBC、MarketWatch、經濟日報、自由時報財經與中央社財經等；本日指定輸入未包含TWSE／TPEx官方公告資料。</li>
+<li>所有投資組合Latest_Price_Date均為2026-10-13；本日無stale price flag與fetch error。</li>
+<li><code>price_table.md</code>完整價格表由本地builder於HTML階段插入。</li>
+</ul>
+
+  </section>
+
+</main>
+
+<div class="footer">
+  Morning Investment Brief｜Reusable HTML Template
+</div>
+
+
+<script>
+(function(){
+
+  const table =
+    document.getElementById('priceTable');
+
+  const tbody =
+    table.querySelector('tbody');
+
+  const rows =
+    Array.from(
+      tbody.querySelectorAll('tr')
+    );
+
+
+  const search =
+    document.getElementById('priceSearch');
+
+  const category =
+    document.getElementById('categoryFilter');
+
+  const move =
+    document.getElementById('moveFilter');
+
+  const reset =
+    document.getElementById('resetFilters');
+
+
+  function parsePct(value){
+
+    const cleaned =
+      value
+        .replace('%','')
+        .replace(',','')
+        .trim();
+
+    const n =
+      parseFloat(cleaned);
+
+    return Number.isFinite(n)
+      ? n
+      : NaN;
+  }
+
+
+  function applyFilters(){
+
+    const q =
+      search.value
+        .trim()
+        .toLowerCase();
+
+    const cat =
+      category.value;
+
+    const minMove =
+      parseFloat(
+        move.value
+      );
+
+
+    rows.forEach(row => {
+
+      const cells =
+        row.cells;
+
+
+      const rowCat =
+        cells[0]
+          ?.textContent
+          .trim()
+        || '';
+
+
+      const company =
+        cells[1]
+          ?.textContent
+          .trim()
+          .toLowerCase()
+        || '';
+
+
+      const ticker =
+        cells[2]
+          ?.textContent
+          .trim()
+          .toLowerCase()
+        || '';
+
+
+      const d1 =
+        parsePct(
+          cells[5]
+            ?.textContent
+          || ''
+        );
+
+
+      const okSearch =
+        !q
+        ||
+        company.includes(q)
+        ||
+        ticker.includes(q);
+
+
+      const okCat =
+        !cat
+        ||
+        rowCat === cat;
+
+
+      const okMove =
+        !Number.isFinite(minMove)
+        ||
+        (
+          Number.isFinite(d1)
+          &&
+          Math.abs(d1) >= minMove
+        );
+
+
+      row.style.display =
+        (
+          okSearch
+          &&
+          okCat
+          &&
+          okMove
+        )
+        ? ''
+        : 'none';
+
+    });
+
+  }
+
+
+  [
+    search,
+    category,
+    move
+  ].forEach(el => {
+
+    el.addEventListener(
+      'input',
+      applyFilters
+    );
+
+    el.addEventListener(
+      'change',
+      applyFilters
+    );
+
+  });
+
+
+  reset.addEventListener(
+    'click',
+    () => {
+
+      search.value = '';
+      category.value = '';
+      move.value = '';
+
+      applyFilters();
+
+    }
+  );
+
+
+  let sortState = {
+    index: -1,
+    asc: true
+  };
+
+
+  table
+    .querySelectorAll(
+      'thead th'
+    )
+    .forEach(
+      (th, index) => {
+
+        th.addEventListener(
+          'click',
+          () => {
+
+            const type =
+              th.dataset.type
+              || 'text';
+
+
+            const asc =
+              sortState.index === index
+              ? !sortState.asc
+              : true;
+
+
+            sortState = {
+              index,
+              asc
+            };
+
+
+            const sorted =
+              [...rows]
+                .sort(
+                  (a, b) => {
+
+                    let av =
+                      a.cells[index]
+                        ?.textContent
+                        .trim()
+                      || '';
+
+
+                    let bv =
+                      b.cells[index]
+                        ?.textContent
+                        .trim()
+                      || '';
+
+
+                    if(
+                      type === 'number'
+                    ){
+
+                      av =
+                        parseFloat(
+                          av
+                            .replace('%','')
+                            .replace(/,/g,'')
+                        )
+                        || 0;
+
+
+                      bv =
+                        parseFloat(
+                          bv
+                            .replace('%','')
+                            .replace(/,/g,'')
+                        )
+                        || 0;
+
+
+                      return asc
+                        ? av - bv
+                        : bv - av;
+
+                    }
+
+
+                    return asc
+                      ? av.localeCompare(
+                          bv,
+                          'zh-Hant'
+                        )
+                      : bv.localeCompare(
+                          av,
+                          'zh-Hant'
+                        );
+
+                  }
+                );
+
+
+            sorted.forEach(
+              row => {
+                tbody.appendChild(row);
+              }
+            );
+
+          }
+        );
+
+      }
+    );
+
+})();
+</script>
+
+
+<script>
+(function () {
+  const selector = document.getElementById("archive-date-selector");
+  if (!selector) return;
+
+  selector.addEventListener("change", function () {
+    const selectedDate = this.value;
+    const inArchive = window.location.pathname.includes("/archive/");
+
+    if (selectedDate === "__LATEST__") {
+      window.location.href = inArchive ? "../index.html" : "index.html";
+      return;
+    }
+
+    if (inArchive) {
+      window.location.href = selectedDate + ".html";
+    } else {
+      window.location.href = "archive/" + selectedDate + ".html";
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
